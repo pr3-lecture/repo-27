@@ -4,7 +4,7 @@ class AboutArrays < Neo::Koan
   def test_creating_arrays
     empty_array = Array.new
     assert_equal [].class, empty_array.class
-    assert_equal [].size, empty_array.size
+    assert_equal [].size , empty_array.size
   end
 
   def test_array_literals
@@ -15,10 +15,10 @@ class AboutArrays < Neo::Koan
     assert_equal [1], array
 
     array[1] = 2
-    assert_equal [1, __], array
+    assert_equal [1, 2], array
 
     array << 333
-    assert_equal __, array
+    assert_equal [1, 2, 333], array
   end
 
   def test_accessing_array_elements
