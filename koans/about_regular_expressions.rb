@@ -106,17 +106,17 @@ class AboutRegularExpressions < Neo::Koan
   end
 
   def test_dollar_sign_anchors_to_the_end_of_lines
-    assert_equal "2", "2 lines\nnum 42"[/\d+$/]
+    assert_equal "42", "2 lines\nnum 42"[/\d+$/]
   end
 
   def test_slash_b_anchors_to_a_word_boundary
-    assert_equal __, "bovine vines"[/\bvine./]
+    assert_equal "vines", "bovine vines"[/\bvine./]
   end
 
   # ------------------------------------------------------------------
 
   def test_parentheses_group_contents
-    assert_equal __, "ahahaha"[/(ha)+/]
+    assert_equal "hahaha", "ahahaha"[/(ha)+/]
   end
 
   # ------------------------------------------------------------------
