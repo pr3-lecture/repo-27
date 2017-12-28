@@ -1,22 +1,34 @@
 #include "crypto.h"
 
-#define ENCRYPT_MODE 0;
-#define DECRYPT_MODE 1;
+#define ENCRYPT_MODE 0
+#define DECRYPT_MODE 1
 
 int encrypt(KEY key, const char* input, char* output){
-  if(int error = checkErrors(key.chars, input, ENCRYPT_MODE)){
+  int error;
+  if(error = checkErrors(key.chars, input, ENCRYPT_MODE)){
     return error;
   }
   crypt(key, input, output, ENCRYPT_MODE);
-  Return 0;
+  return 0;
 }
 
 int decrypt(KEY key, const char* cypherText, char* output){
-  if(int error = checkErrors(key.chars, cypherText, DECRYPT_MODE)){
+  int error;
+  if(error = checkErrors(key.chars, cypherText, DECRYPT_MODE)){
     return error;
   }
   crypt(key, cypherText, output, DECRYPT_MODE);
-  Return 0;
+  return 0;
+}
+
+int crypt(KEY key, const char* message, char* output, int mode){
+  if(mode == ENCRYPT_MODE){
+
+  }
+  if(mode == DECRYPT_MODE){
+
+  }
+  return 0;
 }
 
 int checkErrors(char* keychars, char* input, int mode){

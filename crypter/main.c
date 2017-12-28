@@ -3,21 +3,21 @@
 
 
 int main(int argc, char const *argv[]) {
-
+  
   int error = 0;
 
   switch(argc) {
 	   case 2: //input from command line
         /** Read from stdin **/
         /** encrypt/decrypt message **/
-        error =
+        //error =
         /** print output **/
         break;
 	   case 3: //input from file
         /** open file **/
         /** read line **/
         /** encrypt/decrypt line **/
-        error = 
+        //error =
         /** print line **/
         break;
 	   default: // wrong parameters
