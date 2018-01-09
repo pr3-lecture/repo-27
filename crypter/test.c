@@ -1,20 +1,23 @@
 #include "crypto.h"
 #include <stdio.h>
-
+#include <stdlib.h>
+#include <string.h>
 #define BUFFER_SIZE 128
 #define mu_assert(message, test) do { if (!(test)) return message; return 0; } while (0)
 #define mu_run_test(test) do { char *message = test(); tests_run++; \
                                 if (message) return message; } while (0)
 
 KEY key;
-char output[BUFFER_SIZE];
+// char output[BUFFER_SIZE];
 int tests_run=0;
 
 
 // static char* testKeyTooShortOnEncrypt() {
 //     key.type=1;
 //     key.chars = "";
-//     mu_assert("testKeyTooShort failed", encrypt(key, "INPUT", output) == E_KEY_TOO_SHORT);
+//     char* input = "INPUT";
+//     char* output = (char*) malloc(sizeof(char)*(strlen(input)));
+//     mu_assert("testKeyTooShort failed", encrypt(key, input, output) == E_KEY_TOO_SHORT);
 //     return NULL;
 // }
 

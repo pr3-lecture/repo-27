@@ -4,9 +4,6 @@
 
 #define ENCRYPT_MODE 0
 #define DECRYPT_MODE 1
-#define TEXT_SIZE 128
-
-
 
 
 int encrypt(KEY key, const char* input, char* output){
@@ -19,17 +16,14 @@ int decrypt(KEY key, const char* cypherText, char* output){
 
 /* encrypts/decrypts message into output and returns error */
 int crypt(KEY key, const char* message, char* output, int mode){
-      int error;
-      if((error = checkErrors(key.chars, message, mode))){
-          return error;
-      }
-      if(mode == ENCRYPT_MODE){
-        printf("ENCRYPT MODE\n");
-      }
-      if(mode == DECRYPT_MODE){
-        printf("DECRYPT MODE\n");
-      }
-      return 0;
+      // int error;
+      // if((error = checkErrors(key.chars, message, mode))){
+      //     return error;
+      // }
+    for(int i=0;i<strlen(message);i++){
+          output[i]= (message[i]-'A'+ 1 ^ key.chars[i%strlen(key.chars)]-'A'+1)+'A'-1;
+    }
+    return 0;
 }
 
 int checkErrors(KEY key, char* input, int mode){

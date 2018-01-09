@@ -45,26 +45,15 @@ int main(int argc, char *argv[]) {
         printf("Usage: KEY [file name]\n");
         return -1;
         //END OF WRONG PARAMETERS
-  }//END OF GET INPUT
-  output = (char*)malloc(sizeof(char)*(strlen(input)));
+  }//END OF GEsT INPUT
+  output = (char*)malloc(strlen(input));
   KEY key = {1, argv[1]};
   result = (0== strcmp(argv[0], "./encrypt")) ? encrypt(key, input, output) : decrypt(key, input, output);
   /** print output **/
-  printf("OUTPUT: %s\n", output);
+  printf("OUTPUT: ");
+  for(int i; i<strlen(input); i++)printf("%c", output[i]);
+  free((char*)input);
   free(output);
-
-  // //check result for errors
-  // if (result == E_KEY_TOO_SHORT)
-  //   fprintf(stderr, "Error: Key length not sufficient\n");
-  //
-  // if (result == E_KEY_ILLEGAL_CHAR)
-  //   fprintf(stderr, "Error: Key contains illegal characters\n");
-  //
-  // if (result == E_MESSAGE_ILLEGAL_CHAR)
-  //   fprintf(stderr, "Error: Message contains illegal characters\n");
-  //
-  // if (result == E_CYPHER_ILLEGAL_CHAR)
-  //   fprintf(stderr, "Error: Cypher contains illegal characters\n");
 
   return result;
 }
