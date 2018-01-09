@@ -16,12 +16,12 @@ int decrypt(KEY key, const char* cypherText, char* output){
 
 /* encrypts/decrypts message into output and returns error */
 int crypt(KEY key, const char* message, char* output, int mode){
-      // int error;
-      // if((error = checkErrors(key.chars, message, mode))){
-      //     return error;
-      // }
+      int error;
+      if((error = checkErrors(key, message, mode))){
+          return error;
+      }
     for(int i=0;i<strlen(message);i++){
-          output[i]= (message[i]-'A'+ 1 ^ key.chars[i%strlen(key.chars)]-'A'+1)+'A'-1;
+          output[i]= ((message[i]-'A'+ 1) ^ (key.chars[i%strlen(key.chars)]-'A'+1))+'A'-1;
     }
     return 0;
 }
@@ -30,35 +30,31 @@ int checkErrors(KEY key, char* input, int mode){
 
   /** Check if key too short **/
   if(!strlen(key.chars)){
-      fprintf(stderr, "Error: Key length not sufficient\n");
       return E_KEY_TOO_SHORT;
   }
 
-  // /** Check if key contains illegal characters **/
-  // for(int j=0;j<TEXT_SIZE;j++){
-  //     if(!strchr(KEY_CHARACTERS, key.chars+j++)){
-  //         fprintf(stderr, "Error: Key contains illegal characters\n");
-  //         return E_KEY_ILLEGAL_CHAR;
-  //     }
-  // }
+  /** Check if key contains illegal characters **/
+  for(int i=0;i<strlen(key.chars);i++){
+      if(!strchr(KEY_CHARACTERS, key.chars[i])){
+          return E_KEY_ILLEGAL_CHAR;
+      }
+  }
 
-
-//    /** Check if message contains illegal characters **/
-//    while(*input){
-//      if(!strchr(MESSAGE_CHARACTERS, *input++)){
-//        fprintf(stderr, "Error: Message contains illegal characters\n");
-//        return E_MESSAGE_ILLEGAL_CHAR;
-//      }
-//    }
-//  }else{
-//    /** Check if cypher contains illegal characters **/
-//    while(*input){
-//      if(!strchr(CYPHER_CHARACTERS, *input++)){
-//        fprintf(stderr, "Error: Cypher contains illegal characters\n");
-//        return E_CYPHER_ILLEGAL_CHAR;
-//      }
-//    }
-//  }
+  if(mode==ENCRYPT_MODE){
+    /** Check if message contains illegal characters **/
+    for(int i=0;i<strlen(input);i++){
+      if(!strchr(MESSAGE_CHARACTERS, input[i])){
+        return E_MESSAGE_ILLEGAL_CHAR;
+      }
+    }
+  }else{
+   /** Check if cypher contains illegal characters **/
+   for(int i=0;i<strlen(input);i++){
+     if(!strchr(CYPHER_CHARACTERS, input[i])){
+       return E_CYPHER_ILLEGAL_CHAR;
+     }
+   }
+ }
 
   return 0;
 }

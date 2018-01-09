@@ -55,5 +55,20 @@ int main(int argc, char *argv[]) {
   free((char*)input);
   free(output);
 
+  if(result == E_KEY_TOO_SHORT){
+    fprintf(stderr, "Error: Key length not sufficient\n");
+  }
+
+  if(result == E_KEY_ILLEGAL_CHAR){
+     fprintf(stderr, "Error: Key contains illegal characters\n");
+  }
+
+  if(result == E_MESSAGE_ILLEGAL_CHAR){
+    fprintf(stderr, "Error: Message contains illegal characters\n");
+  }
+
+  if(result == E_CYPHER_ILLEGAL_CHAR){
+    fprintf(stderr, "Error: Cypher contains illegal characters\n");
+  }
   return result;
 }
